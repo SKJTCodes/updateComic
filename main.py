@@ -1,11 +1,11 @@
 import argparse
-from pathlib import Path
 import os
+from pathlib import Path
+
 import helper as h
+from FileManager import FileManager
 from Logger import Logger
 from UpdateDB import UpdateDB
-from FileManager import FileManager
-
 
 """
 Image database structure:
@@ -54,5 +54,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-

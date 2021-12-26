@@ -1,11 +1,9 @@
 import re
-import sys
-import time
 from pathlib import Path
 
 import pandas as pd
-from tqdm import tqdm
 from PIL import Image
+from tqdm import tqdm
 
 import helper as h
 from AccessSql import SQL
@@ -185,4 +183,3 @@ class FileManager:
                                                                                   x['item_id']].shape[0], axis=1)
 
         return chpt_df, page_df, df
-

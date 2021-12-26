@@ -1,10 +1,10 @@
+import shutil
+from pathlib import Path
+
 from tqdm import tqdm
 
-from Env import Env as env
 from AccessSql import SQL
-
-from pathlib import Path
-import shutil
+from Env import Env as env
 
 
 class UpdateDB:
@@ -81,4 +81,3 @@ class UpdateDB:
         """
         self.mysql.query(q_str)
         self.mysql.set_update()
-
