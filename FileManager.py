@@ -145,7 +145,11 @@ class FileManager:
 
             for item2, (chapt_title, path) in row.item2_paths.items():
                 page_count = 0
-                for index, page_path in enumerate(path.iterdir()):
+
+                pages = h.sort_num_string([str(x) for x in path.iterdir()])
+                for index, page_path in enumerate(pages):
+                    page_path = Path(page_path)
+
                     if re.match(img_ext_pat, page_path.name) is None or page_path.is_dir():
                         continue
 
