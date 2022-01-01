@@ -45,6 +45,10 @@ def main():
     fm = FileManager(log, args.output)
     chpt_df, page_df, df = fm.get_file_info(args.input, 'image')
 
+    if not df.loc[df['cover_path'].isna()].empty:
+        log.error("There are Entries with Cover Path is None:")
+        log.error(f"{df.loc[df['cover_path'].isna(), ['maker', 'title']]}")
+
     if chpt_df is not None:
         udb = UpdateDB(log, args.output)
         udb.update_db(df, chpt_df, page_df)

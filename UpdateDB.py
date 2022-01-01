@@ -15,6 +15,7 @@ class UpdateDB:
 
     def update_db(self, title_df, chpt_df, page_df, _type="image"):
         for i, entry in tqdm(title_df.iterrows(), total=title_df.shape[0], desc="Updating Database"):
+            self.log.debug(f"Updating SQL entry for Title: {entry['title']}")
             self._update_lib(entry)
 
             c_df = chpt_df.loc[chpt_df['item_id'] == entry['item_id']]
@@ -69,6 +70,7 @@ class UpdateDB:
         self.mysql.set_update()
 
     def _update_lib(self, entry):
+        assert entry['cover_path'] is not None, f"Cover Path is None for Entry: {entry['title']}"
         q_str = f"""
         INSERT INTO Library_Items(ItemId, Title, Maker, ItemType, DateCreated, CoverPath, TotalEntries)
         VALUES

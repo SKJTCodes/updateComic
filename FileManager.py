@@ -21,10 +21,14 @@ class FileManager:
 
         input_path = Path(in_path) if isinstance(in_path, str) else in_path
         df = self._process_titles(input_path, _type)
+
         df = self._process_chapt_epi(df, _type)
+
         df = self._assign_item_id(df)
+
         if df.empty:
             return None, None, None
+
         if _type == "image":
             chpt_df, page_df, df = self._get_chapters_and_pages(df)
             return chpt_df, page_df, df

@@ -2,7 +2,6 @@ import os
 import logging
 import logging.handlers
 from pathlib import Path
-import gzip
 import sys
 
 
@@ -12,7 +11,7 @@ class Logger:
         self.out_file = out_file
 
         # init logger
-        self.log = logging.getLogger()
+        self.log = logging.getLogger("PIL.PngImagePlugin")
         self.log.setLevel(logging.DEBUG)
         logging.getLogger('urllib3').propagate = False
 
@@ -21,9 +20,6 @@ class Logger:
 
     def get_logger(self):
         # init handler
-        # for compressed Log file
-        # z_file = gzip.open(str(self.out_file) + ".gz", mode="wt", encoding="utf-8")
-        # file_handler = logging.StreamHandler(z_file)
         file_handler = logging.FileHandler(str(self.out_file))
         file_handler.setLevel(logging.DEBUG)
 
